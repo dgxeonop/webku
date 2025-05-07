@@ -13,11 +13,14 @@
         }
 
         body {
-            background: #010101;
+            background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"%3E%3Cdefs%3E%3Cstyle%3E.pentacle%7Bfill:none;stroke:%2300cc00;stroke-width:0.5;opacity:0.1;%7D%3C/style%3E%3C/defs%3E%3Ccircle class="pentacle" cx="100" cy="100" r="80"/%3E%3Cpath class="pentacle" d="M100 180L76.4 123.6H20L64.8 83.6L41.2 27.2L100 60L158.8 27.2L135.2 83.6L180 123.6H143.6L100 180Z"/%3E%3C/svg%3E') repeat, #010101;
+            background-size: 200px;
+            animation: pentaclePulse 15s linear infinite;
             color: #00cc00;
             min-height: 100vh;
             overflow-x: hidden;
             position: relative;
+            z-index: -3;
         }
 
         body::before {
@@ -43,13 +46,6 @@
             height: 100%;
             background: linear-gradient(45deg, rgba(0, 204, 0, 0.05), rgba(0, 0, 0, 0.8));
             z-index: -1;
-        }
-
-        body {
-            background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"%3E%3Cdefs%3E%3Cstyle%3E.pentacle%7Bfill:none;stroke:%2300cc00;stroke-width:0.5;opacity:0.1;%7D%3C/style%3E%3C/defs%3E%3Ccircle class="pentacle" cx="100" cy="100" r="80"/%3E%3Cpath class="pentacle" d="M100 180L76.4 123.6H20L64.8 83.6L41.2 27.2L100 60L158.8 27.2L135.2 83.6L180 123.6H143.6L100 180Z"/%3E%3C/svg%3E') repeat, #010101;
-            background-size: 200px;
-            animation: pentaclePulse 15s linear infinite;
-            z-index: -3;
         }
 
         @keyframes dotPulse {
@@ -113,6 +109,10 @@
             color: #00cc00;
         }
 
+        .navbar ul li a.active {
+            text-shadow: 0 0 10px #00cc00;
+        }
+
         .music-toggle {
             background: rgba(0, 204, 0, 0.08);
             border: 1px solid #00cc00;
@@ -138,42 +138,50 @@
             align-items: center;
             text-align: center;
             position: relative;
+            background: rgba(0, 0, 0, 0.3);
         }
 
-        .hero h1 {
-            font-size: 4em;
-            text-shadow: 0 0 15px #00cc00, 0 0 25px #00cc00;
-            letter-spacing: 4px;
+        .hero .title {
+            display: inline-block;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .hero .title .main {
+            font-size: 4.5em;
+            text-shadow: 0 0 10px #00cc00;
+            letter-spacing: 3px;
             background: linear-gradient(90deg, #00cc00, #00cc00);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            display: inline-block;
-            animation: float 3s ease-in-out infinite;
+            display: block;
         }
 
         @keyframes float {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-8px); }
+            50% { transform: translateY(-6px); }
         }
 
         .hero .intro {
-            font-size: 1.6em;
-            margin-top: 25px;
-            max-width: 85%;
+            font-size: 1.5em;
+            margin-top: 20px;
+            max-width: 90%;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 8px;
         }
 
         .intro span {
             display: block;
-            margin: 15px 0;
+            margin: 10px 0;
             opacity: 0;
-            transform: scale(0.8);
-            animation: popIn 0.6s ease-out forwards;
+            transform: scale(0.9);
+            animation: popIn 0.5s ease-out forwards;
         }
 
-        .intro span:nth-child(1) { animation-delay: 0.3s; }
-        .intro span:nth-child(2) { animation-delay: 0.9s; }
-        .intro span:nth-child(3) { animation-delay: 1.5s; }
+        .intro span:nth-child(1) { animation-delay: 0.2s; }
+        .intro span:nth-child(2) { animation-delay: 0.4s; }
+        .intro span:nth-child(3) { animation-delay: 0.6s; }
 
         @keyframes popIn {
             to { opacity: 1; transform: scale(1); }
@@ -183,11 +191,18 @@
             padding: 80px 15px;
             max-width: 1100px;
             margin: 0 auto;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .section.active {
+            display: flex;
         }
 
         .section h2 {
             font-size: 2.5em;
-            text-align: center;
             margin-bottom: 30px;
             text-shadow: 0 0 12px #00cc00;
             background: linear-gradient(45deg, #00cc00, #00cc00);
@@ -200,7 +215,8 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
             gap: 15px;
-            align-items: center;
+            width: 100%;
+            max-width: 1100px;
         }
 
         .bot-button {
@@ -248,6 +264,8 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 15px;
+            width: 100%;
+            max-width: 1100px;
         }
 
         .sosmed-card {
@@ -256,6 +274,9 @@
             border: 1px solid #00cc00;
             border-radius: 8px;
             transition: transform 0.3s, background 0.3s;
+            text-decoration: none;
+            color: #00cc00;
+            display: block;
         }
 
         .sosmed-card:hover {
@@ -272,18 +293,14 @@
             color: transparent;
         }
 
-        .sosmed-card a {
-            color: #00cc00;
-            text-decoration: none;
+        .sosmed-card p {
             font-size: 0.95em;
-        }
-
-        .sosmed-card a:hover {
-            text-decoration: underline;
+            margin: 0;
         }
 
         .telegram-contact {
-            text-align: center;
+            width: 100%;
+            max-width: 1100px;
         }
 
         .telegram-contact a {
@@ -309,20 +326,21 @@
             background: rgba(0, 0, 0, 0.85);
             border-top: 1px solid #00cc00;
             font-size: 0.9em;
+            width: 100%;
         }
 
         @media (min-width: 769px) {
             .navbar { padding: 15px 0; }
             .navbar ul li { margin: 0 20px; }
             .navbar ul li a { font-size: 1.2em; }
-            .hero h1 { font-size: 5em; }
-            .hero .intro { font-size: 1.8em; }
+            .hero .title .main { font-size: 5.5em; }
+            .hero .intro { font-size: 1.7em; }
             .section { padding: 100px 20px; }
             .section h2 { font-size: 2.8em; }
             .bot-button { padding: 20px; font-size: 1em; }
-            .sosmed-card { padding: 25px; }
+            .sosmed-card { padding: 20px; }
             .sosmed-card h3 { font-size: 1.5em; }
-            .sosmed-card a { font-size: 1em; }
+            .sosmed-card p { font-size: 1em; }
             .telegram-contact a { font-size: 1.3em; }
         }
 
@@ -331,8 +349,8 @@
             .navbar ul { flex-direction: row; flex-wrap: wrap; padding: 5px; }
             .navbar ul li { margin: 5px 10px; }
             .navbar ul li a { font-size: 0.9em; }
-            .hero h1 { font-size: 2.5em; }
-            .hero .intro { font-size: 1.2em; }
+            .hero .title .main { font-size: 2.8em; }
+            .hero .intro { font-size: 1.1em; padding: 15px; }
             .section { padding: 60px 10px; }
             .section h2 { font-size: 2em; }
             .bot-grid { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
@@ -345,10 +363,10 @@
 <body>
     <nav class="navbar">
         <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#bot">Bot</a></li>
-            <li><a href="#sosmed">Sosmed</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="#home" class="nav-link active" data-section="home">Home</a></li>
+            <li><a href="#bot" class="nav-link" data-section="bot">Bot</a></li>
+            <li><a href="#sosmed" class="nav-link" data-section="sosmed">Sosmed</a></li>
+            <li><a href="#contact" class="nav-link" data-section="contact">Contact</a></li>
             <li><button class="music-toggle" id="musicToggle">Music: On</button></li>
         </ul>
     </nav>
@@ -358,8 +376,10 @@
         Your browser does not support the audio element.
     </audio>
 
-    <section id="home" class="hero">
-        <h1>Xeon Bot Incorporated</h1>
+    <section id="home" class="hero section active">
+        <div class="title">
+            <span class="main">Xeon Bot Incorporated</span>
+        </div>
         <div class="intro">
             <span>i am legally wrong but ethically right!</span>
             <span>introducing to a dream guy named</span>
@@ -381,26 +401,26 @@
     <section id="sosmed" class="section">
         <h2>Sosmed</h2>
         <div class="sosmed-grid">
-            <div class="sosmed-card">
+            <a href="https://t.me/+kjKAAu5GO9NiYTY9" class="sosmed-card">
                 <h3>Telegram Channel</h3>
-                <a href="https://t.me/+kjKAAu5GO9NiYTY9">Join Channel</a>
-            </div>
-            <div class="sosmed-card">
+                <p>Join Channel</p>
+            </a>
+            <a href="https://t.me/+QTDvwwdYTpNhNjc1" class="sosmed-card">
                 <h3>Telegram Group</h3>
-                <a href="https://t.me/+QTDvwwdYTpNhNjc1">Join Group</a>
-            </div>
-            <div class="sosmed-card">
+                <p>Join Group</p>
+            </a>
+            <a href="https://whatsapp.com/channel/0029VaG9VfPKWEKk1rxTQD20" class="sosmed-card">
                 <h3>WhatsApp Channel</h3>
-                <a href="https://whatsapp.com/channel/0029VaG9VfPKWEKk1rxTQD20">Follow Channel</a>
-            </div>
-            <div class="sosmed-card">
+                <p>Follow Channel</p>
+            </a>
+            <a href="https://youtube.com/@dgxeon?si=LB7xXp8AHohj9IK0" class="sosmed-card">
                 <h3>YouTube Channel</h3>
-                <a href="https://youtube.com/@dgxeon?si=LB7xXp8AHohj9IK0">Subscribe</a>
-            </div>
-            <div class="sosmed-card">
+                <p>Subscribe</p>
+            </a>
+            <a href="https://www.instagram.com/unicorn_xeon13?igsh=MWZqbHl4OTNjaHR3ZA==" class="sosmed-card">
                 <h3>Instagram</h3>
-                <a href="https://www.instagram.com/unicorn_xeon13?igsh=MWZqbHl4OTNjaHR3ZA==">Follow</a>
-            </div>
+                <p>Follow</p>
+            </a>
         </div>
     </section>
 
@@ -418,7 +438,10 @@
     <script>
         const musicToggle = document.getElementById('musicToggle');
         const backgroundMusic = document.getElementById('backgroundMusic');
-        
+        const navLinks = document.querySelectorAll('.nav-link');
+        const sections = document.querySelectorAll('.section');
+
+        // Music toggle functionality
         musicToggle.addEventListener('click', () => {
             if (backgroundMusic.paused) {
                 backgroundMusic.play();
@@ -428,6 +451,27 @@
                 musicToggle.textContent = 'Music: Off';
             }
         });
+
+        // Section toggle functionality
+        function showSection(sectionId) {
+            sections.forEach(section => {
+                section.classList.toggle('active', section.id === sectionId);
+            });
+            navLinks.forEach(link => {
+                link.classList.toggle('active', link.getAttribute('data-section') === sectionId);
+            });
+        }
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const sectionId = link.getAttribute('data-section');
+                showSection(sectionId);
+            });
+        });
+
+        // Show home section by default
+        showSection('home');
     </script>
 </body>
 </html>
