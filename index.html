@@ -440,16 +440,32 @@
         const backgroundMusic = document.getElementById('backgroundMusic');
         const navLinks = document.querySelectorAll('.nav-link');
         const sections = document.querySelectorAll('.section');
+        const interactiveElements = document.querySelectorAll('.nav-link, .bot-button, .sosmed-card, .telegram-contact a');
 
-        // Music toggle functionality
+        // Ensure music toggle works correctly
         musicToggle.addEventListener('click', () => {
             if (backgroundMusic.paused) {
-                backgroundMusic.play();
+                backgroundMusic.play().catch(error => {
+                    console.log('Music play failed:', error);
+                });
                 musicToggle.textContent = 'Music: On';
             } else {
                 backgroundMusic.pause();
+                backgroundMusic.currentTime = 0; // Reset to start for next play
                 musicToggle.textContent = 'Music: Off';
             }
+        });
+
+        // Play music on any interactive element click (except music toggle)
+        interactiveElements.forEach(element => {
+            element.addEventListener('click', () => {
+                if (backgroundMusic.paused) {
+                    backgroundMusic.play().catch(error => {
+                        console.log('Music play failed:', error);
+                    });
+                    musicToggle.textContent = 'Music: On';
+                }
+            });
         });
 
         // Section toggle functionality
