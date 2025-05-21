@@ -188,7 +188,7 @@
         }
 
         .section {
-            padding: 80px 15px;
+            padding: 100px 15px 80px; /* Increased top padding for navbar */
             max-width: 1100px;
             margin: 0 auto;
             display: none;
@@ -201,14 +201,16 @@
             display: flex;
         }
 
-        .section h2 {
-            font-size: 2.5em;
-            margin-bottom: 30px;
-            text-shadow: 0 0 12px #00cc00;
+        .section-label {
+            font-size: 1.5em; /* Smaller font size */
+            margin-bottom: 15px;
+            text-shadow: 0 0 8px #00cc00; /* Reduced shadow for smaller text */
             background: linear-gradient(45deg, #00cc00, #00cc00);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
+            text-align: center;
+            grid-column: 1 / -1; /* Span the entire grid row */
         }
 
         .bot-grid {
@@ -217,6 +219,7 @@
             gap: 15px;
             width: 100%;
             max-width: 1100px;
+            margin-top: 20px;
         }
 
         .bot-button {
@@ -232,6 +235,7 @@
             color: #00cc00;
             display: block;
             white-space: nowrap;
+            cursor: pointer;
         }
 
         .bot-button.centered {
@@ -265,6 +269,7 @@
             gap: 15px;
             width: 100%;
             max-width: 1100px;
+            margin-top: 20px;
         }
 
         .sosmed-card {
@@ -276,6 +281,7 @@
             text-decoration: none;
             color: #00cc00;
             display: block;
+            cursor: pointer;
         }
 
         .sosmed-card:hover {
@@ -297,12 +303,16 @@
             margin: 0;
         }
 
-        .telegram-contact {
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
             width: 100%;
             max-width: 1100px;
+            margin-top: 20px;
         }
 
-        .telegram-contact a {
+        .contact-link {
             color: #00cc00;
             text-decoration: none;
             font-size: 1.2em;
@@ -310,11 +320,13 @@
             padding: 12px 20px;
             border: 1px solid #00cc00;
             border-radius: 5px;
-            display: inline-block;
+            text-align: center;
             transition: transform 0.3s, background 0.3s;
+            grid-column: 1 / -1; /* Center the link in the grid */
+            cursor: pointer;
         }
 
-        .telegram-contact a:hover {
+        .contact-link:hover {
             transform: scale(1.05);
             background: rgba(0, 204, 0, 0.15);
         }
@@ -405,13 +417,13 @@
             .navbar ul li a { font-size: 1.2em; }
             .hero .title .main { font-size: 5.5em; }
             .hero .intro { font-size: 1.7em; }
-            .section { padding: 100px 20px; }
-            .section h2 { font-size: 2.8em; }
+            .section { padding: 120px 20px 100px; }
+            .section-label { font-size: 1.8em; margin-bottom: 20px; }
             .bot-button { padding: 20px; font-size: 1em; }
             .sosmed-card { padding: 20px; }
             .sosmed-card h3 { font-size: 1.5em; }
             .sosmed-card p { font-size: 1em; }
-            .telegram-contact a { font-size: 1.3em; }
+            .contact-link { font-size: 1.3em; }
             .play-pause-button { padding: 20px 30px; font-size: 1.4em; }
             .video-title { font-size: 1.4em; }
         }
@@ -423,8 +435,8 @@
             .navbar ul li a { font-size: 0.9em; }
             .hero .title .main { font-size: 2.8em; }
             .hero .intro { font-size: 1.1em; padding: 15px; }
-            .section { padding: 60px 10px; }
-            .section h2 { font-size: 2em; }
+            .section { padding: 80px 10px 60px; }
+            .section-label { font-size: 1.2em; margin-bottom: 10px; }
             .bot-grid { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
             .sosmed-grid { grid-template-columns: 1fr; }
             .video-grid { grid-template-columns: 1fr; }
@@ -464,8 +476,8 @@
     </section>
 
     <section id="bot" class="section">
-        <h2>Bot</h2>
         <div class="bot-grid">
+            <div class="section-label">Bot</div>
             <a href="https://t.me/xbugprem_bot" class="bot-button">Xeon Bug Bot VIP</a>
             <a href="https://t.me/xbugtelebot" class="bot-button">Xeon Bug Xinvi2</a>
             <a href="https://t.me/xbugfree_bot" class="bot-button">Xeon Bug Bot Free</a>
@@ -477,8 +489,8 @@
     </section>
 
     <section id="sosmed" class="section">
-        <h2>Sosmed</h2>
         <div class="sosmed-grid">
+            <div class="section-label">Sosmed</div>
             <a href="https://t.me/+kjKAAu5GO9NiYTY9" class="sosmed-card">
                 <h3>Telegram Channel</h3>
                 <p>Join Channel</p>
@@ -503,8 +515,8 @@
     </section>
 
     <section id="videos" class="section">
-        <h2>Videos</h2>
         <div class="video-grid">
+            <div class="section-label">Videos</div>
             <div class="video-section">
                 <div class="video-title">Force Close New 20/05/2025</div>
                 <div class="video-container">
@@ -520,9 +532,9 @@
     </section>
 
     <section id="contact" class="section">
-        <h2>Contact</h2>
-        <div class="telegram-contact">
-            <a href="https://t.me/dgxeon13">@dgxeon13</a>
+        <div class="contact-grid">
+            <div class="section-label">Contact</div>
+            <a href="https://t.me/dgxeon13" class="contact-link">@dgxeon13</a>
         </div>
     </section>
 
@@ -535,7 +547,7 @@
         const backgroundMusic = document.getElementById('backgroundMusic');
         const navLinks = document.querySelectorAll('.nav-link');
         const sections = document.querySelectorAll('.section');
-        const interactiveElements = document.querySelectorAll('.nav-link, .bot-button, .sosmed-card, .telegram-contact a');
+        const interactiveElements = document.querySelectorAll('.nav-link, .bot-button, .sosmed-card, .contact-link');
         const playPauseButtons = document.querySelectorAll('.play-pause-button');
         let playingVideos = 0; // Track number of videos currently playing
 
