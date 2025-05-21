@@ -538,12 +538,11 @@
         const interactiveElements = document.querySelectorAll('.nav-link, .bot-button, .sosmed-card, .telegram-contact a');
         const playPauseButtons = document.querySelectorAll('.play-pause-button');
         let playingVideos = 0; // Track number of videos currently playing
-        let videoHasPlayed = false; // Track if any video has been played
 
         // Music toggle functionality
         musicToggle.addEventListener('click', () => {
             if (backgroundMusic.paused) {
-                if (!videoHasPlayed) { // Only play music if no video has been played
+                if (playingVideos === 0) { // Only play music if no videos are playing
                     backgroundMusic.play().catch(error => {
                         console.log('Music play failed:', error);
                     });
@@ -559,7 +558,7 @@
         // Play music on interactive element click
         interactiveElements.forEach(element => {
             element.addEventListener('click', () => {
-                if (backgroundMusic.paused && playingVideos === 0 && !videoHasPlayed) {
+                if (backgroundMusic.paused && playingVideos === 0) {
                     backgroundMusic.play().catch(error => {
                         console.log('Music play failed:', error);
                     });
@@ -605,7 +604,6 @@
             // Hide button after 1 second of playback and pause background music
             video.addEventListener('play', () => {
                 playingVideos++;
-                videoHasPlayed = true; // Mark that a video has been played
                 button.textContent = 'Pause';
                 hideTimeout = setTimeout(() => {
                     button.classList.add('hidden');
@@ -620,6 +618,13 @@
                 playingVideos--;
                 button.textContent = 'Play';
                 clearTimeout(hideTimeout);
+                button.classList.remove('hidden');
+            });
+
+            // Update button text when video ends
+            video.addEventListener('ended', () => {
+                playingVideos--;
+                button.textContent = 'Play';
                 button.classList.remove('hidden');
             });
 
@@ -647,13 +652,6 @@
                         button.classList.add('hidden');
                     }, 1000);
                 }
-            });
-
-            // Update button text when video ends
-            video.addEventListener('ended', () => {
-                playingVideos--;
-                button.textContent = 'Play';
-                button.classList.remove('hidden');
             });
         });
 
